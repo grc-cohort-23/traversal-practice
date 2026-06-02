@@ -28,7 +28,7 @@ public class TraversalPractice {
     int kids = 0;
     if(node.left !=null) kids++;
     if(node.right !=null) kids++;
-    if(kids==1) System.out.print(node);
+    if(kids==1) System.out.println(node.value);
     printNodesWithOneChild(node.left);
     printNodesWithOneChild(node.right);
   }
@@ -42,6 +42,7 @@ public class TraversalPractice {
    * @return the sum 
    */
   public static int treeSum(Node<Integer> node) {
+    if(node==null) return 0;
     return treeSum(node.left) + treeSum(node.right) + node.value;
   }
 
@@ -55,6 +56,7 @@ public class TraversalPractice {
    * @return the max value
    */
   public static int maxVal(Node<Integer> node) {
+    if(node==null) return 0;
     int maxVal = maxVal(node.left) > maxVal(node.right) ? maxVal(node.left) : maxVal(node.right);
     return maxVal > node.value ? maxVal : node.value;
   }
@@ -68,6 +70,7 @@ public class TraversalPractice {
    * @return The number of levels in the tree
    */
   public static int numLevels(Node<?> node) {
+    if(node==null) return 0;
     return numLevels(node.left)>numLevels(node.right) ? numLevels(node.left) +1 : numLevels(node.right) +1;
   }
 
