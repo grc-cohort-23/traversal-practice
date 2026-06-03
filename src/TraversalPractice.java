@@ -15,6 +15,12 @@ public class TraversalPractice {
     if (node.value % 2 != 0) System.out.println(node.value);
   }
 
+  public static Boolean hasOneChild(Node<?> node) {
+    int children = 0;
+    children += node.left == null ? 0 : 1;
+    children += node.right == null ? 0 : 1;
+    return (children == 1);
+  }
   /**
    * Prints the values of the nodes that have exactly one child in a tree.
    * Each value is printed on a separate line.
@@ -23,7 +29,12 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static void printNodesWithOneChild(Node<?> node) {
-    
+    if (node == null) return;
+    if (hasOneChild(node)) {
+      System.out.println(node.value);
+    }
+    printNodesWithOneChild(node.left);
+    printNodesWithOneChild(node.right);
   }
 
     /**
