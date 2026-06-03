@@ -60,7 +60,8 @@ public class TraversalPractice {
    * @return the max value
    */
   public static int maxVal(Node<Integer> node) {
-    return 0;
+    if (node == null) return 0;
+    return Math.max(node.value,Math.max(maxVal(node.left), maxVal(node.right)));
   }
 
   /**
