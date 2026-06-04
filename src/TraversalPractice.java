@@ -8,7 +8,12 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static void printOddNodes(Node<Integer> node) {
-
+    if(node == null) return;
+    printOddNodes(node.left);
+    printOddNodes(node.right);
+    if(node.value%2==1){
+      System.out.println(node.value);
+    }
   }
 
   /**
@@ -19,7 +24,12 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static void printNodesWithOneChild(Node<?> node) {
-    
+    if(node==null) return;
+    if(node.left==null && node.right!=null || node.right==null && node.left!=null){
+      System.out.println(node.value);
+    }
+    printNodesWithOneChild(node.left);
+    printNodesWithOneChild(node.right);
   }
 
     /**
@@ -31,7 +41,9 @@ public class TraversalPractice {
    * @return the sum 
    */
   public static int treeSum(Node<Integer> node) {
-    return 0;
+    if(node==null) return 0;
+    return node.value + treeSum(node.left) + treeSum(node.right);
+
   }
 
   /**
@@ -44,7 +56,15 @@ public class TraversalPractice {
    * @return the max value
    */
   public static int maxVal(Node<Integer> node) {
-    return 0;
+    if(node==null) return 0;
+    int max = node.value;
+    if(maxVal(node.left) > max){
+      max = maxVal(node.left);
+    }
+    if(maxVal(node.right) > max){
+      max = maxVal(node.right);
+    }
+    return max;
   }
 
   /**
@@ -56,7 +76,14 @@ public class TraversalPractice {
    * @return The number of levels in the tree
    */
   public static int numLevels(Node<?> node) {
-    return 0;
+    if(node==null)return 0;
+    int leftNodes = numLevels(node.left);
+    int rightNodes = numLevels(node.right);
+    if(leftNodes > rightNodes){
+      return 1 + leftNodes;
+    }else{
+      return 1+rightNodes;
+    }
   }
 
   public static void main(String[] args) {
