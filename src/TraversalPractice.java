@@ -8,7 +8,12 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static void printOddNodes(Node<Integer> node) {
-
+    if (node == null) return;
+    printOddNodes(node.left);
+    printOddNodes(node.right);
+    if (node.value % 2 != 0) {
+        System.out.println(node.value);
+    }
   }
 
   /**
@@ -20,6 +25,16 @@ public class TraversalPractice {
    */
   public static void printNodesWithOneChild(Node<?> node) {
     
+    if(node == null) return;
+
+    if (node.left == null && node.right == null) return;
+
+    if (node.left == null || node.right == null) {
+        System.out.println(node.value);
+    }
+
+    printNodesWithOneChild(node.left);
+    printNodesWithOneChild(node.right);
   }
 
     /**
@@ -31,7 +46,9 @@ public class TraversalPractice {
    * @return the sum 
    */
   public static int treeSum(Node<Integer> node) {
-    return 0;
+    if (node == null) return 0;
+
+    return node.value + treeSum(node.left) + treeSum(node.right);
   }
 
   /**
@@ -44,7 +61,12 @@ public class TraversalPractice {
    * @return the max value
    */
   public static int maxVal(Node<Integer> node) {
-    return 0;
+    if (node == null) return 0;
+
+    int leftMax = maxVal(node.left);
+    int rightMax = maxVal(node.right);
+
+    return Math.max(node.value, Math.max(leftMax, rightMax));
   }
 
   /**
@@ -56,7 +78,12 @@ public class TraversalPractice {
    * @return The number of levels in the tree
    */
   public static int numLevels(Node<?> node) {
-    return 0;
+    if (node == null) return 0;
+
+    int leftLevels = numLevels(node.left);
+    int rightLevels = numLevels(node.right);
+
+    return 1 + Math.max(leftLevels, rightLevels);
   }
 
   public static void main(String[] args) {
@@ -70,7 +97,12 @@ public class TraversalPractice {
 
      // Replace the below line to create a tree 
      // as represented in the diagram above
-     Node<Integer> smallTree = null;
+     Node<Integer> smallTree = new Node<>(99, 
+        new Node<>(45, 
+            new Node<>(9, null, null),
+            new Node<>(5, null, null)), 
+        new Node<>(82, null, 
+            new Node<>(16, null, null)));
 
 
     /*
