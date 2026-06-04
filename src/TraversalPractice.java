@@ -24,7 +24,12 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static void printNodesWithOneChild(Node<?> node) {
-    
+    if(node==null) return;
+    if(node.left==null && node.right!=null || node.right==null && node.left!=null){
+      System.out.println(node.value);
+    }
+    printNodesWithOneChild(node.left);
+    printNodesWithOneChild(node.right);
   }
 
     /**
@@ -36,7 +41,9 @@ public class TraversalPractice {
    * @return the sum 
    */
   public static int treeSum(Node<Integer> node) {
-    return 0;
+    if(node==null) return 0;
+    return node.value + treeSum(node.left) + treeSum(node.right);
+
   }
 
   /**
