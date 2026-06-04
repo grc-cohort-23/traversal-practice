@@ -81,6 +81,11 @@ public class TraversalPractice {
    */
   public static int numLevels(Node<?> node) {
     if (node == null) return 0;
+
+    int leftNodes = numLevels(node.left);
+    int rightNodes = numLevels(node.right);
+
+    return 1+ Math.max(leftNodes, rightNodes);
     
   }
 
