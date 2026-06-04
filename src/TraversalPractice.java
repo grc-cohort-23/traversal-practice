@@ -15,6 +15,7 @@ public class TraversalPractice {
     printOddNodes(node.right);
     if (node.value % 2 != 0) {
       System.out.println(node.value);
+    }
   }
 
   /**
@@ -25,14 +26,7 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static void printNodesWithOneChild(Node<?> node) {
-    if (node == null) {
-      return;
-    }
-    if ((node.left == null && node.right != null) || (node.left != null && node.right == null)) {
-      System.out.println(node.value);
-    }
-    printNodesWithOneChild(node.left);
-    printNodesWithOneChild(node.right);
+   
   }
 
     /**
@@ -44,10 +38,7 @@ public class TraversalPractice {
    * @return the sum 
    */
   public static int treeSum(Node<Integer> node) {
-    if (node == null) {
-      return 0;
-    }
-    return node.value + treeSum(node.left) + treeSum(node.right);
+   return 0;
   }
 
   /**
@@ -60,12 +51,7 @@ public class TraversalPractice {
    * @return the max value
    */
   public static int maxVal(Node<Integer> node) {
-    if (node == null) {
-      return 0;
-    }
-    int leftMax = maxVal(node.left);
-    int rightMax = maxVal(node.right);
-    return Math.max(node.value, Math.max(leftMax, rightMax));
+    return 0;
   }
 
   /**
