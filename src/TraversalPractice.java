@@ -9,6 +9,14 @@ public class TraversalPractice {
    */
   public static void printOddNodes(Node<Integer> node) {
 
+    if (node == null) return;
+
+    // Traverse
+    printOddNodes(node.left);
+    printOddNodes(node.right);
+
+    // Check if odd
+    if (node.value % 2 != 0) System.out.println(node.value);
   }
 
   /**
@@ -19,7 +27,16 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static void printNodesWithOneChild(Node<?> node) {
-    
+    if (node == null) return;
+
+    // Check for one child (null and not null left & right)
+    if ((node.left == null && node.right != null) || (node.right == null && node.left != null)) {
+      System.out.println(node.value);
+    }
+
+    // Traverse
+    printNodesWithOneChild(node.left);
+    printNodesWithOneChild(node.right);
   }
 
     /**
@@ -31,7 +48,14 @@ public class TraversalPractice {
    * @return the sum 
    */
   public static int treeSum(Node<Integer> node) {
-    return 0;
+    if (node == null) return 0;
+
+    // Traverse
+    int leftCount = treeSum(node.left);
+    int rightCount = treeSum(node.right);
+
+    // Return vals + root
+    return node.value + leftCount + rightCount;
   }
 
   /**
@@ -44,7 +68,17 @@ public class TraversalPractice {
    * @return the max value
    */
   public static int maxVal(Node<Integer> node) {
-    return 0;
+    if (node == null) return 0;
+
+    if (node.left == null && node.right == null) return node.value;
+
+    if (node.left != null && node.right != null) {
+      return Math.max(maxVal(node.left), maxVal(node.right));
+    } else if (node.left != null) {
+      return Math.max(maxVal(node.left), node.value);
+    } else {
+      return Math.max(maxVal(node.right), node.value);
+    }
   }
 
   /**
@@ -56,7 +90,9 @@ public class TraversalPractice {
    * @return The number of levels in the tree
    */
   public static int numLevels(Node<?> node) {
-    return 0;
+    if (node == null) return 0;
+
+    return 1 + Math.max(numLevels(node.left), numLevels(node.right));
   }
 
   public static void main(String[] args) {
@@ -70,8 +106,25 @@ public class TraversalPractice {
 
      // Replace the below line to create a tree 
      // as represented in the diagram above
-     Node<Integer> smallTree = null;
+     Node<Integer> nodeNine = new Node<>(9, null, null);
+     Node<Integer> nodeFive = new Node<>(5, null, null);
+     Node<Integer> nodeSixteen = new Node<>(16, null, null);
+     Node<Integer> nodeFortyFive = new Node<>(45, nodeNine, nodeFive);
+     Node<Integer> nodeEightyTwo = new Node<>(82, null, nodeSixteen);
+     Node<Integer> root = new Node<>(99, nodeFortyFive, nodeEightyTwo);
 
+     // OR
+
+     Node<Integer> smallTree = new Node<>(99, 
+        new Node<>(45, 
+            new Node<>(9, null, null),
+            new Node<>(5, null, null)
+          ), 
+        new Node<>(82, 
+          null,
+          new Node<>(16, null, null)
+        )
+      );
 
     /*
      *              42
